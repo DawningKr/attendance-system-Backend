@@ -2,26 +2,27 @@ package cn.edu.njupt.attendancesystem.common;
 
 import cn.edu.njupt.attendancesystem.entity.Attendance;
 import cn.edu.njupt.attendancesystem.entity.Student;
-import org.springframework.cglib.core.Local;
+import cn.edu.njupt.attendancesystem.utils.Util;
 
 import java.time.LocalDateTime;
 
 /**
  * This is a "Date Transfer Object" class
- * which is used to transfer data through different part
+ * which is used to transfer data through different sections
  */
 public class Info{
     private String studentId;
     private String studentName;
     private String studentSection;
     private Integer attendanceId;
-    private LocalDateTime attendanceTime;
+    private String attendanceTime;
     private Integer attendanceStatus;
 
     public Info(Attendance attendance, Student student){
         this.attendanceId = attendance.getId();
-        LocalDateTime time_db = attendance.getTime().toLocalDateTime();
-        this.attendanceTime = time_db.plusHours(8);
+        LocalDateTime timeDB = attendance.getTime().toLocalDateTime();
+        LocalDateTime preciseTime = timeDB.plusHours(8);
+        this.attendanceTime = Util.time2String(preciseTime);
         this.attendanceStatus = attendance.getStatus();
         this.studentId = student.getId();
         this.studentName = student.getName();
@@ -35,7 +36,7 @@ public class Info{
         return studentId;
     }
 
-    public LocalDateTime getAttendanceTime() {
+    public String getAttendanceTime() {
         return attendanceTime;
     }
 
@@ -71,7 +72,7 @@ public class Info{
         this.attendanceId = attendanceId;
     }
 
-    public void setAttendanceTime(LocalDateTime attendanceTime) {
+    public void setAttendanceTime(String attendanceTime) {
         this.attendanceTime = attendanceTime;
     }
 
