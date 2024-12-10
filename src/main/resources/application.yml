@@ -1,0 +1,19 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.81.128:3308/attendance_db
+    username: root
+    password: Yb#12309
+
+mybatis:
+  configuration:
+    cache-enabled: true
+    local-cache-scope: session
+    auto-mapping-behavior: partial
+    default-executor-type: reuse
+    map-underscore-to-camel-case: true
+  type-aliases-package: cn.edu.njupt.attendancesystem.entity
+  mapper-locations: classpath:mapper/*Mapper.xml
