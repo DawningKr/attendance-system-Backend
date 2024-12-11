@@ -4,11 +4,9 @@ import cn.edu.njupt.attendancesystem.business.service.StudentService;
 import cn.edu.njupt.attendancesystem.common.Result;
 import cn.edu.njupt.attendancesystem.entity.Student;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/student")
 public class StudentController {

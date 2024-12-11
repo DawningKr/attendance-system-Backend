@@ -16,14 +16,15 @@ public class Info{
     private String studentSection;
     private Integer attendanceId;
     private String attendanceTime;
-    private Integer attendanceStatus;
+    private String attendanceStatus;
 
     public Info(Attendance attendance, Student student){
         this.attendanceId = attendance.getId();
         LocalDateTime timeDB = attendance.getTime().toLocalDateTime();
         LocalDateTime preciseTime = timeDB.plusHours(8);
         this.attendanceTime = Util.time2String(preciseTime);
-        this.attendanceStatus = attendance.getStatus();
+        int status = attendance.getStatus();
+        this.attendanceStatus = Util.integer2String(status);
         this.studentId = student.getId();
         this.studentName = student.getName();
         this.studentSection= student.getSection();
@@ -40,7 +41,7 @@ public class Info{
         return attendanceTime;
     }
 
-    public Integer getAttendanceStatus() {
+    public String getAttendanceStatus() {
         return attendanceStatus;
     }
 
@@ -76,7 +77,7 @@ public class Info{
         this.attendanceTime = attendanceTime;
     }
 
-    public void setAttendanceStatus(Integer attendanceStatus) {
+    public void setAttendanceStatus(String attendanceStatus) {
         this.attendanceStatus = attendanceStatus;
     }
 }

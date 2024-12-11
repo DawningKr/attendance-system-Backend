@@ -8,4 +8,8 @@
         select id, fk_student_id, time, status from attendances where id = #{id}
     </select>
 
+    <select id="selectAll" resultType="Attendance">
+        select id, fk_student_id, time, status from attendances
+    </select>
+
 </mapper>

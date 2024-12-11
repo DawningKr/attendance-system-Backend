@@ -9,9 +9,12 @@ import cn.edu.njupt.attendancesystem.entity.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @CrossOrigin
 @RestController
-@RequestMapping(value = "/attendance", produces = "application/json")
+@RequestMapping("/attendance")
 public class AttendanceController {
 
     @Autowired
@@ -23,9 +26,23 @@ public class AttendanceController {
     @GetMapping("/select/{id}")
     public Result selectInfoById(@PathVariable Integer id){
         Attendance attendance = attendanceService.selectInfoById(id);
+        Info info = convert(attendance);
+        return new Result(info, null, true);
+    }
+
+    @GetMapping("/select/all")
+    public Result selectAll(){
+        List<Attendance> list = attendanceService.selectAll();
+        List<Info> result = new ArrayList<>(list.size());
+        list.forEach(attendance -> {
+            result.add(convert(attendance));
+        });
+        return new Result(result, null, true);
+    }
+
+    private Info convert(Attendance attendance){
         String studentId = attendance.getFkStudentId();
         Student student = studentService.selectStudentById(studentId);
-        Info info = new Info(attendance, student);
-        return new Result(info, null, true);
+        return new Info(attendance, student);
     }
 }
