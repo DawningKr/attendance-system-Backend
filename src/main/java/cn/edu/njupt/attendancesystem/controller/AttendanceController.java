@@ -84,6 +84,21 @@ public class AttendanceController {
         return new Result(result, null, true);
     }
 
+    @GetMapping("/select/date/{date}")
+    public Result selectInfoByDate(@PathVariable String date){
+        String regex = "^\\d{4}-(0[1-9]|1[0-2])-\\d{2}$";
+        if(date.matches(regex)){
+            List<Attendance> attendances = attendanceService.selectInfoByDate(date);
+            List<Info> result = new ArrayList<>(attendances.size());
+            attendances.forEach(attendance -> {
+                result.add(convert(attendance));
+            });
+            return new Result(result, null, true);
+        }else {
+            return new Result(null, "输入日期有误，请重新输入！", false);
+        }
+    }
+
 
     private Info convert(Attendance attendance){
         String studentId = attendance.getFkStudentId();
