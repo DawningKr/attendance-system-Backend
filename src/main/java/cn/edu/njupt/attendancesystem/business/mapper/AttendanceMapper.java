@@ -10,4 +10,8 @@ public interface AttendanceMapper {
 
     Attendance selectInfoById(Integer id);
     List<Attendance> selectAll();
+    void updateInfo(Attendance attendance);
+    void deleteInfoById(Integer id);
+    void addInfo(Attendance attendance);
+    List<Attendance> selectInfoByStudentId(String studentId);
 }

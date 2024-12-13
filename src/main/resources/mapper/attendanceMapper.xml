@@ -3,6 +3,18 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.edu.njupt.attendancesystem.business.mapper.AttendanceMapper">
+    <insert id="addInfo" parameterType="Attendance">
+        insert into attendances (fk_student_id, time, status)
+        values (#{fkStudentId}, #{time}, #{status})
+    </insert>
+    <update id="updateInfo" parameterType="Attendance">
+        update attendances
+        set status = #{status}
+        where id = #{id}
+    </update>
+    <delete id="deleteInfoById">
+        delete from attendances where id = #{id}
+    </delete>
 
     <select id="selectInfoById" resultType="Attendance">
         select id, fk_student_id, time, status from attendances where id = #{id}
@@ -10,6 +22,10 @@
 
     <select id="selectAll" resultType="Attendance">
         select id, fk_student_id, time, status from attendances
+    </select>
+    <select id="selectInfoByStudentId" parameterType="string" resultType="Attendance">
+        select id, fk_student_id, time, status from attendances
+        where fk_student_id = #{studentId}
     </select>
 
 </mapper>

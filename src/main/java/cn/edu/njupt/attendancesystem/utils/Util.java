@@ -29,4 +29,13 @@ public class Util {
     public static String integer2String(Integer status){
         return mapper.get(status);
     }
+
+    public static Integer string2Integer(String status){
+        for(Integer key : mapper.keySet()){
+            if(status.equals(mapper.get(key))){
+                return key;
+            }
+        }
+        return null;
+    }
 }

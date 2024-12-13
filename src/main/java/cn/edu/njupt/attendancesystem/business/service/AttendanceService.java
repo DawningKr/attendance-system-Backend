@@ -19,4 +19,20 @@ public class AttendanceService {
     public List<Attendance> selectAll(){
         return attendanceMapper.selectAll();
     }
+
+    public void updateInfo(Attendance attendance){
+        attendanceMapper.updateInfo(attendance);
+    }
+
+    public void deleteInfoById(Integer id){
+        attendanceMapper.deleteInfoById(id);
+    }
+
+    public void addInfo(Attendance attendance){
+        attendanceMapper.addInfo(attendance);
+    }
+
+    public List<Attendance> selectInfoByStudentId(String studentId){
+        return attendanceMapper.selectInfoByStudentId(studentId);
+    }
 }

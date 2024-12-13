@@ -21,8 +21,7 @@ public class Info{
     public Info(Attendance attendance, Student student){
         this.attendanceId = attendance.getId();
         LocalDateTime timeDB = attendance.getTime().toLocalDateTime();
-        LocalDateTime preciseTime = timeDB.plusHours(8);
-        this.attendanceTime = Util.time2String(preciseTime);
+        this.attendanceTime = Util.time2String(timeDB);
         int status = attendance.getStatus();
         this.attendanceStatus = Util.integer2String(status);
         this.studentId = student.getId();
@@ -79,5 +78,17 @@ public class Info{
 
     public void setAttendanceStatus(String attendanceStatus) {
         this.attendanceStatus = attendanceStatus;
+    }
+
+    @Override
+    public String toString() {
+        return "Info{" +
+                "studentId='" + studentId + '\'' +
+                ", studentName='" + studentName + '\'' +
+                ", studentSection='" + studentSection + '\'' +
+                ", attendanceId=" + attendanceId +
+                ", attendanceTime='" + attendanceTime + '\'' +
+                ", attendanceStatus='" + attendanceStatus + '\'' +
+                '}';
     }
 }
